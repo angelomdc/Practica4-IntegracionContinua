@@ -1,0 +1,21 @@
+name: Alerta CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ejecutar-y-notificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Ejecutar Hola Mundo
+        run: node app.js
+
+      - name: Enviar notificacion a ntfy
+        run: |
+          curl -d "Nuevo codigo subido a main. GitHub Actions ejecutado correctamente." https://ntfy.sh/devops-itla
